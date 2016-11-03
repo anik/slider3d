@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>3D Slider Example</title>
+	<style type="text/css">
+	body{
+		margin: 0;
+		padding: 0;
+	}
+	.wrapped{
+		text-align: center;
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		display: table;
+		position: absolute;
+		height: 100%;
+		width: 100%;
+	}
+	.wrapped h1{
+		color: #444;
+		font-size: 70px;
+		font-weight: 700;
+		padding: 0px 0 0px 15px;
+		margin: 0 0 30px 0;
+		text-transform: uppercase;
+	}
+	.middle {
+	    display: table-cell;
+	    vertical-align: middle;
+	}
+	.inner {
+	    width:500px;
+	    margin: 0 auto;
+	}
+	.slider3d-class{
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		background: url(./img/slide_image.jpg);
+	    background-size: 100% 3600%;                  
+	    background-repeat:   no-repeat;
+	    background-position: 0 0;
+	}
+	#ranger{ width: 200px; }
+	#ranger:hover{ cursor: pointer; }
+	</style>
+</head>
+<body>
+	<div class="wrapped">
+		<div class="inner">
+			<h1>3D Slider</h1>
+			<div class="slider3d-class" data-image-size="400px" ></div>
+			<input class="ranger" type="range" min="0" max="35" value="0" step="1"/>
+		</div>
+	</div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($){
+		$(".slider3d-class").css({ "height":$(".slider3d-class").data("image-size") });
+		$(".ranger").on("input change",function(){
+			var position = $(this).val()*$(this).parent().find(".slider3d-class").height();
+			$(this).parent().find(".slider3d-class").css({"background-position-y": -position });
+		});
+	});
+</script>
+</html>
